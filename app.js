@@ -55,6 +55,31 @@ const addMore = [
     }
 ];
 
+const managerQ = [
+    {
+        type: "input",
+        name: "office",
+        message: "What is your office Number?",
+    }
+];
+
+const engineerQ = [
+    {
+        type: "input",
+        name: "github",
+        message: "What is your github Username?",
+    }
+];
+
+const internQ = [
+    {
+        type: "input",
+        name: "school",
+        message: "Where do you attend school?",
+    }
+];
+
+
 // start function
 const start = () => {
     inquirer.prompt({
@@ -98,16 +123,28 @@ const newEmployee = () =>{
 };
 
 const newManager = () => {
-    console.log("ManagerFunc")
-}
+    inquirer.prompt(managerQ)
+    .then(()=>{
+        console.log("Success!")
+        newEmployee()
+    })
+};
 
 const newEngineer = () => {
-    console.log("EngineerFunc")
-}
+    inquirer.prompt(engineerQ)
+    .then(()=>{
+        console.log("Success!")
+        newEmployee()
+    })
+};
 
 const newIntern = () => {
-    console.log("InternFunc")
-}
+    inquirer.prompt(internQ)
+    .then(()=>{
+        console.log("Success!")
+        newEmployee()
+    })
+};
 
 
 
