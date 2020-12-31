@@ -20,6 +20,9 @@ const render = require("./lib/htmlRenderer");
 let writeNewFile = util.promisify(fs.writeFile);
 
 
+let employee = [];
+
+
 // start function
 const start = () => {
     inquirer.prompt({
