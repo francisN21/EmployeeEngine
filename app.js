@@ -119,7 +119,7 @@ const newEmployee = () =>{
         if (data.addEmployee === "Yes"){
             createEmployee();
         }
-        else{ console.log("Goodbye! Thanks"); process.exit(0); }
+        else{ writeHTML(); console.log("Goodbye! Thanks"); process.exit(0); }
     });
 };
 
@@ -159,7 +159,13 @@ const newIntern = () => {
     .catch((err)=> console.log(err));
 };
 
-
+const writeHTML = () =>{
+    employeeArray = render(employee);
+    writeFile("./output/team.html", employeeArray)
+    .then(()=>{ console.log("HTML rendered") })
+    .catch((err)=> console.log(err));
+    return writeFile("team.html", employeeArray)
+};
 
 
 
