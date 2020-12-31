@@ -127,7 +127,8 @@ const newEmployee = () =>{
 const newManager = () => {
     inquirer.prompt(managerQ)
     .then((data)=>{
-        employee.push(employeeData, data.office)
+        employeeData = new Manager (employeeData.name, employeeData.ID, employeeData.Email, data.office)
+        employee.push(employeeData)
         console.log(employee)
         console.log("Success!")
         newEmployee()
@@ -137,6 +138,9 @@ const newManager = () => {
 const newEngineer = () => {
     inquirer.prompt(engineerQ)
     .then((data)=>{
+        employeeData = new Engineer (employeeData.name, employeeData.ID, employeeData.Email, data.github)
+        employee.push(employeeData)
+        console.log(employee)
         console.log("Success!")
         newEmployee()
     })
@@ -145,6 +149,9 @@ const newEngineer = () => {
 const newIntern = () => {
     inquirer.prompt(internQ)
     .then((data)=>{
+        employeeData = new Intern(employeeData.name, employeeData.ID, employeeData.Email, data.school)
+        employee.push(employeeData)
+        console.log(employee)
         console.log("Success!")
         newEmployee()
     })
