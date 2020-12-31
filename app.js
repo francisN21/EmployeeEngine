@@ -80,9 +80,9 @@ const start = () => {
 const createEmployee = () => {
   inquirer.prompt(eQuestions)
   .then((data)=>{
-    if (data.role === "Manager"){ console.log("Manager") }
-    if (data.role === "Engineer"){ console.log("Engineer") }
-    if (data.role === "Intern"){ console.log("Intern") }
+    if (data.role === "Manager"){ newManager() }
+    if (data.role === "Engineer"){ newEngineer() }
+    if (data.role === "Intern"){ newIntern() }
   })
   .catch((err)=> console.log(err));
 };
@@ -96,6 +96,18 @@ const newEmployee = () =>{
         else{ console.log("Goodbye! Thanks"); process.exit(0); }
     });
 };
+
+const newManager = () => {
+    console.log("ManagerFunc")
+}
+
+const newEngineer = () => {
+    console.log("EngineerFunc")
+}
+
+const newIntern = () => {
+    console.log("InternFunc")
+}
 
 
 
