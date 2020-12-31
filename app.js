@@ -30,12 +30,12 @@ const eQuestions = [
     },
     {
         type: "input",
-        name: "name",
+        name: "ID",
         message: "Enter employee ID:"
     },
     {
         type: "input",
-        name: "name",
+        name: "Email",
         message: "Enter employee Email:"
     },
     {
@@ -105,9 +105,11 @@ const start = () => {
 const createEmployee = () => {
   inquirer.prompt(eQuestions)
   .then((data)=>{
-    if (data.role === "Manager"){ newManager() }
-    if (data.role === "Engineer"){ newEngineer() }
-    if (data.role === "Intern"){ newIntern() }
+    employeeData = data;
+    if (data.role === "Manager"){ newManager() };
+    if (data.role === "Engineer"){ newEngineer() };
+    if (data.role === "Intern"){ newIntern() };
+
   })
   .catch((err)=> console.log(err));
 };
@@ -124,7 +126,9 @@ const newEmployee = () =>{
 
 const newManager = () => {
     inquirer.prompt(managerQ)
-    .then(()=>{
+    .then((data)=>{
+        employee.push(employeeData, data.office)
+        console.log(employee)
         console.log("Success!")
         newEmployee()
     })
@@ -132,7 +136,7 @@ const newManager = () => {
 
 const newEngineer = () => {
     inquirer.prompt(engineerQ)
-    .then(()=>{
+    .then((data)=>{
         console.log("Success!")
         newEmployee()
     })
@@ -140,7 +144,7 @@ const newEngineer = () => {
 
 const newIntern = () => {
     inquirer.prompt(internQ)
-    .then(()=>{
+    .then((data)=>{
         console.log("Success!")
         newEmployee()
     })
