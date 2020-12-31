@@ -37,8 +37,13 @@ const eQuestions = [
         type: "input",
         name: "name",
         message: "Enter employee Email:"
-    }
-
+    },
+    {
+        type: "list",
+        name: "role",
+        message: "Enter employee Role:",
+        choices: ["Manager","Engineer","Intern"]
+    },
 ];
 
 const addMore = [
@@ -74,9 +79,12 @@ const start = () => {
 
 const createEmployee = () => {
   inquirer.prompt(eQuestions)
-  .then(()=>{
-    newEmployee();
-  });
+  .then((data)=>{
+    if (data.role === "Manager"){ console.log("Manager") }
+    if (data.role === "Engineer"){ console.log("Engineer") }
+    if (data.role === "Intern"){ console.log("Intern") }
+  })
+  .catch((err)=> console.log(err));
 };
 
 const newEmployee = () =>{
