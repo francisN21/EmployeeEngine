@@ -19,9 +19,8 @@ const render = require("./lib/htmlRenderer");
 // to write the file.
 let writeFile = util.promisify(fs.writeFile);
 
-
+// all array placeholder and questions array
 let employee = [];
-
 const eQuestions = [
     {
         type: "input",
@@ -130,9 +129,10 @@ const newManager = () => {
         employeeData = new Manager (employeeData.name, employeeData.ID, employeeData.Email, data.office)
         employee.push(employeeData)
         console.log(employee)
-        console.log("Success!")
-        newEmployee()
+        console.log("Success! Manager Created")
     })
+    .then(()=>{ newEmployee(); })
+    .catch((err)=> console.log(err));
 };
 
 const newEngineer = () => {
@@ -141,9 +141,10 @@ const newEngineer = () => {
         employeeData = new Engineer (employeeData.name, employeeData.ID, employeeData.Email, data.github)
         employee.push(employeeData)
         console.log(employee)
-        console.log("Success!")
-        newEmployee()
+        console.log("Success! Engineer Created")
     })
+    .then(()=>{ newEmployee(); })
+    .catch((err)=> console.log(err));
 };
 
 const newIntern = () => {
@@ -152,9 +153,10 @@ const newIntern = () => {
         employeeData = new Intern(employeeData.name, employeeData.ID, employeeData.Email, data.school)
         employee.push(employeeData)
         console.log(employee)
-        console.log("Success!")
-        newEmployee()
+        console.log("Success! Intern Created")
     })
+    .then(()=>{ newEmployee(); })
+    .catch((err)=> console.log(err));
 };
 
 
