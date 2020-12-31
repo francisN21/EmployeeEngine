@@ -19,6 +19,56 @@ const render = require("./lib/htmlRenderer");
 // to write the file.
 let writeNewFile = util.promisify(fs.writeFile);
 
+
+// start function
+const start = () => {
+    inquirer.prompt({
+      name: "StartorExit",
+      type: "list",
+      message: "Welcome to employee template engine. Would you like to proceed?",
+      choices: ["Yes", "No"]
+    })
+    .then(answer => {
+        if(answer.StartorExit === "Yes"){
+            // function call to initialize program
+            console.log("start");
+            start();
+        } else {
+            // terminates the program
+            process.exit(0);
+        }
+    })
+  }
+  // starts the readme bot program
+  start();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
