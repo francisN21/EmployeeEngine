@@ -39,7 +39,16 @@ const eQuestions = [
         message: "Enter employee Email:"
     }
 
-]
+];
+
+const addMore = [
+    {
+        type: "list",
+        name: "addEmployee",
+        message: "Do you want to add more employee?",
+        choices: ["Yes", "No"]
+    }
+];
 
 // start function
 const start = () => {
@@ -57,18 +66,27 @@ const start = () => {
         } else {
             // terminates the program
             process.exit(0);
-        }
-    })
-  }
+        };
+    });
+  };
   // starts the readme bot program
   start();
 
 const createEmployee = () => {
   inquirer.prompt(eQuestions)
   .then(()=>{
-      start()
+    newEmployee();
   });
+};
 
+const newEmployee = () =>{
+    inquirer.prompt(addMore)
+    .then((data)=>{
+        if (data.addEmployee === "Yes"){
+            createEmployee();
+        }
+        else{ console.log("Goodbye! Thanks"); process.exit(0); }
+    });
 };
 
 
