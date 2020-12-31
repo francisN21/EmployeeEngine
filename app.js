@@ -17,11 +17,29 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 // Const to render the HTML file
 const render = require("./lib/htmlRenderer");
 // to write the file.
-let writeNewFile = util.promisify(fs.writeFile);
+let writeFile = util.promisify(fs.writeFile);
 
 
 let employee = [];
 
+const eQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "Enter employee Name:"
+    },
+    {
+        type: "input",
+        name: "name",
+        message: "Enter employee ID:"
+    },
+    {
+        type: "input",
+        name: "name",
+        message: "Enter employee Email:"
+    }
+
+]
 
 // start function
 const start = () => {
@@ -35,7 +53,7 @@ const start = () => {
         if(answer.StartorExit === "Yes"){
             // function call to initialize program
             console.log("start");
-            start();
+            createEmployee();
         } else {
             // terminates the program
             process.exit(0);
@@ -44,6 +62,14 @@ const start = () => {
   }
   // starts the readme bot program
   start();
+
+const createEmployee = () => {
+  inquirer.prompt(eQuestions)
+  .then(()=>{
+      start()
+  });
+
+};
 
 
 
