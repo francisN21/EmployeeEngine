@@ -20,7 +20,7 @@ const render = require("./lib/htmlRenderer");
 let writeFile = util.promisify(fs.writeFile);
 
 // all array placeholder and questions array
-let employee = [];
+let employees = [];
 const eQuestions = [
     {
         type: "input",
@@ -29,12 +29,12 @@ const eQuestions = [
     },
     {
         type: "input",
-        name: "ID",
+        name: "id",
         message: "Enter employee ID:"
     },
     {
         type: "input",
-        name: "Email",
+        name: "email",
         message: "Enter employee Email:"
     },
     {
@@ -126,9 +126,9 @@ const newEmployee = () =>{
 const newManager = () => {
     inquirer.prompt(managerQ)
     .then((data)=>{
-        employeeData = new Manager (employeeData.name, employeeData.ID, employeeData.Email, data.office)
-        employee.push(employeeData)
-        console.log(employee)
+        employeeData = new Manager (employeeData.name, employeeData.id, employeeData.email, data.office)
+        employees.push(employeeData)
+        console.log(employees)
         console.log("Success! Manager Created")
     })
     .then(()=>{ newEmployee(); })
@@ -138,9 +138,9 @@ const newManager = () => {
 const newEngineer = () => {
     inquirer.prompt(engineerQ)
     .then((data)=>{
-        employeeData = new Engineer (employeeData.name, employeeData.ID, employeeData.Email, data.github)
-        employee.push(employeeData)
-        console.log(employee)
+        employeeData = new Engineer (employeeData.name, employeeData.id, employeeData.email, data.github)
+        employees.push(employeeData)
+        console.log(employees)
         console.log("Success! Engineer Created")
     })
     .then(()=>{ newEmployee(); })
@@ -150,9 +150,9 @@ const newEngineer = () => {
 const newIntern = () => {
     inquirer.prompt(internQ)
     .then((data)=>{
-        employeeData = new Intern(employeeData.name, employeeData.ID, employeeData.Email, data.school)
-        employee.push(employeeData)
-        console.log(employee)
+        employeeData = new Intern(employeeData.name, employeeData.id, employeeData.email, data.school)
+        employees.push(employeeData)
+        console.log(employees)
         console.log("Success! Intern Created")
     })
     .then(()=>{ newEmployee(); })
@@ -160,11 +160,11 @@ const newIntern = () => {
 };
 
 const writeHTML = () =>{
-    employeeArray = render(employee);
-    writeFile("./output/team.html", employeeArray)
-    .then(()=>{ console.log("HTML rendered") })
+    employeeArray = render(employees);
+    writeFile("team.html", employeeArray)
+    .then(()=> console.log("HTML rendered"))
     .catch((err)=> console.log(err));
-    return writeFile("team.html", employeeArray)
+    return writeFile("./output/team.html", employeeArray)
 };
 
 
