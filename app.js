@@ -104,7 +104,7 @@ const start = () => {
 const createEmployee = () => {
   inquirer.prompt(eQuestions)
   .then((data)=>{
-    employeeData = data;
+    employee = data;
     if (data.role === "Manager"){ newManager() };
     if (data.role === "Engineer"){ newEngineer() };
     if (data.role === "Intern"){ newIntern() };
@@ -126,36 +126,43 @@ const newEmployee = () =>{
 const newManager = () => {
     inquirer.prompt(managerQ)
     .then((data)=>{
-        employeeData = new Manager (employeeData.name, employeeData.id, employeeData.email, data.office)
-        employees.push(employeeData)
+        employee = new Manager (employee.name, employee.id, employee.email, data.office)
+        employees.push(employee)
         console.log(employees)
         console.log("Success! Manager Created")
+        inquirer.prompt(addMore)
+        .then((data)=>{
+            if (data.addEmployee === "Yes"){
+                createEmployee();
+            }
+            else{ writeHTML();}
+        })
+        .catch((err)=> console.log(err));
     })
-    .then(()=>{ newEmployee(); })
-    .catch((err)=> console.log(err));
+
 };
 
 const newEngineer = () => {
     inquirer.prompt(engineerQ)
     .then((data)=>{
-        employeeData = new Engineer (employeeData.name, employeeData.id, employeeData.email, data.github)
-        employees.push(employeeData)
+        employee = new Engineer (employee.name, employee.id, employee.email, data.office)
+        employees.push(employee)
         console.log(employees)
         console.log("Success! Engineer Created")
     })
-    .then(()=>{ newEmployee(); })
+    .then((data)=>{ newEmployee(data); })
     .catch((err)=> console.log(err));
 };
 
 const newIntern = () => {
     inquirer.prompt(internQ)
     .then((data)=>{
-        employeeData = new Intern(employeeData.name, employeeData.id, employeeData.email, data.school)
-        employees.push(employeeData)
+        employee = new Intern (employee.name, employee.id, employee.email, data.office)
+        employees.push(employee)
         console.log(employees)
         console.log("Success! Intern Created")
     })
-    .then(()=>{ newEmployee(); })
+    .then((data)=>{ newEmployee(data); })
     .catch((err)=> console.log(err));
 };
 
