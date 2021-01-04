@@ -139,39 +139,52 @@ const newManager = () => {
         })
         .catch((err)=> console.log(err));
     })
-
+    .catch((err)=> console.log(err));
 };
 
 const newEngineer = () => {
     inquirer.prompt(engineerQ)
     .then((data)=>{
-        employee = new Engineer (employee.name, employee.id, employee.email, data.office)
+        employee = new Engineer (employee.name, employee.id, employee.email, data.github)
         employees.push(employee)
         console.log(employees)
         console.log("Success! Engineer Created")
+        inquirer.prompt(addMore)
+        .then((data)=>{
+            if (data.addEmployee === "Yes"){
+                createEmployee();
+            }
+            else{ writeHTML();}
+        })
+        .catch((err)=> console.log(err));
     })
-    .then((data)=>{ newEmployee(data); })
     .catch((err)=> console.log(err));
 };
 
 const newIntern = () => {
     inquirer.prompt(internQ)
     .then((data)=>{
-        employee = new Intern (employee.name, employee.id, employee.email, data.office)
+        employee = new Intern (employee.name, employee.id, employee.email, data.school)
         employees.push(employee)
         console.log(employees)
         console.log("Success! Intern Created")
+        inquirer.prompt(addMore)
+        .then((data)=>{
+            if (data.addEmployee === "Yes"){
+                createEmployee();
+            }
+            else{ writeHTML();}
+        })
+        .catch((err)=> console.log(err));
     })
-    .then((data)=>{ newEmployee(data); })
     .catch((err)=> console.log(err));
 };
 
 const writeHTML = () =>{
     employeeArray = render(employees);
-    writeFile("team.html", employeeArray)
+    writeFile("./output/team.html", employeeArray)
     .then(()=> console.log("HTML rendered"))
     .catch((err)=> console.log(err));
-    return writeFile("./output/team.html", employeeArray)
 };
 
 
